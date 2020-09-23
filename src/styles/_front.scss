@@ -1,0 +1,112 @@
+.front {
+    font-family: 'Grandstander', cursive;
+    &-header {
+        background: none !important;
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 8rem;
+        padding-left: 5rem;
+    }
+
+    &-link {
+        font-size: 1.2rem;
+        color: black;
+        padding-left: 2rem;
+        font-weight: 600;
+        color: #236CA4
+    }
+
+    &-list {
+        text-decoration: none !important;
+        list-style: none;
+        display: flex;
+    }
+    &-logo {
+        font-size: 1.8rem;
+        width: 30%;
+        text-align: right;
+        line-height: 1.7rem;
+        color: #236CA4;
+        font-weight: 700;
+        text-align: center;
+    }
+    &-ban {
+        display: flex;
+    }
+    &-left {
+        flex: 0.35;
+        padding: 2.5rem 0;
+        padding-left: 3rem;
+
+        &-main {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #236CA4;
+        }
+
+        &-sub {
+            font-size: 2rem;
+            margin-top: -2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: rgba($color: #236CA4, $alpha: 0.85);
+            text-align: center;
+        }
+
+        &-text {
+            line-height: 1.2rem;
+            text-align: justify;
+            font-size: 1rem;
+        }
+
+    }
+    &-right {
+        flex: 0.65;
+    }
+
+    &-img {
+        width: 100%;
+    }
+
+    &-login {
+        padding: .8rem 1rem;
+        border: none;
+        background-color: #236CA4;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        box-shadow: 0 6px 10px rgba($color: #000000, $alpha: 0.45);
+        border-radius: 2rem;
+        margin-top: 1rem;
+
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+
+    &-btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+}
+.btn {
+    padding: .5rem 6rem;
+    border: none;
+    background-color: #236CA4;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    //margin-top: 1.5rem;
+    text-align: center;
+    box-shadow: 0 6px 10px rgba($color: #000000, $alpha: 0.45);
+    border-radius: 3px;
+}

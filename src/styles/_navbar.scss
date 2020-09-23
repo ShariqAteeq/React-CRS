@@ -1,0 +1,25 @@
+.nav {
+    background-color: #236CA4;
+
+    &-list {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 8rem;
+    }
+
+    &-link {
+        font-size: 1.2rem;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+    &-logo {
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+}

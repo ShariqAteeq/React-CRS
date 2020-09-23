@@ -1,0 +1,25 @@
+.admin {
+    padding: 1rem 3rem;
+
+    &-bg {
+        display: flex;
+    }
+    
+    &-right {
+        flex: 0.6;
+    }
+
+    &-title {
+        font-size: 2rem;
+        color: #236CA4;
+        text-align: center;
+    }
+}
+
+.table-btn {
+    padding: .5rem 1.2rem;
+    background-color: #236CA4;
+    color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 .5rem .8rem rgba($color: #000000, $alpha: 0.15);
+}
