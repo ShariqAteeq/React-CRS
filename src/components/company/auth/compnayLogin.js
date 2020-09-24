@@ -26,7 +26,7 @@ class CompanyLogin extends Component {
                 <Login myImg = {cpy} title = "Company"
                 submit = {this.onSubmit} email = {this.state.email} password = {this.state.password}
                 change = {this.handleChange} sulink = '/c-signup' />
-                { this.props.auth ? <Redirect to = '/cboard' /> : null }
+                { this.props.auth ? <Redirect to = '/cjob' /> : null }
             </div>
         );
     }

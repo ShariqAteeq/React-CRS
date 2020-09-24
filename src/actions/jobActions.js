@@ -2,12 +2,14 @@ export const createJob = (job) => {
   return (dispatch, getState , {getFirebase , getFirestore}) => {
 
     const firestore = getFirestore();
+    const role = getState().firebase.auth.uid;
+    console.log(role);
     firestore.collection('jobs').add({
       ...job,
       name: 'shariq',
-      createAt: new Date()
-    }).then((res) => {
-      console.log(res);
+      createAt: new Date(),
+      authId: role
+    }).then(() => {
        dispatch({ type: "CREATE_JOB", job });
     }).catch((err) => {
       dispatch({ type: "CREATE_JOB_ERR", err });
@@ -32,11 +34,9 @@ export const UpdateJob = (id , newData) => {
 
     const firestore = getFirestore();
     firestore.collection('jobs').doc(id).update({
-      jobname: newData.jobname,
-      noofvac: newData.noofvac,
+      ...newData
       
-    }).then((res) => {
-      console.log(res);
+    }).then(() => {
        dispatch({ type: "UPDATE_JOB" });
     }).catch((err) => {
       dispatch({ type: "UPDATE_JOB_ERR", err });
