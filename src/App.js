@@ -14,6 +14,7 @@ import CompanySignUp from './components/company/auth/CompanySignUp';
 import AdminLogin from './components/admin/auth/adminLogin';
 import AdminDashboard from './components/admin/adminDashboard';
 import { useSelector } from 'react-redux';
+import CreateJob from './components/company/jobs/createJob';
 import firebase from 'firebase';
 
 
@@ -30,6 +31,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
     <Switch>
+        <Route path = '/cjob' component = {CreateJob} />
       <Route path = '/slogin' component = {StudentLogin} />
       <Route path = '/s-signup' component = {StudentSignUp} />
       <Route path = '/c-signup' component = {CompanySignUp} />

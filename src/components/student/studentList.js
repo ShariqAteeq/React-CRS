@@ -28,14 +28,14 @@ class StudentList extends Component {
 
         const {users , fbusers} = this.props;
         console.log(fbusers);
-         let myuser = fbusers;
+        //  let myuser = fbusers;
 
 
-         fbusers.map(fb => {
-            if(fb.role === "company"){
-                                console.log(fb);
-                             }
-        });
+        //  fbusers.map(fb => {
+        //     if(fb.role === "company"){
+        //                         console.log(fb);
+        //                      }
+        // });
 
         let myUsers = users.map(user => {
             return (
