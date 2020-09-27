@@ -1,23 +1,16 @@
-import { useSelector } from 'react-redux';
-  
-  
 
 export const SignIn = (cred) => {
   
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
     
-  //  const authProfile = useSelector(state => state.firebase.profile);
     firebase
       .auth()
       .signInWithEmailAndPassword(cred.email, cred.password)
-      .then((res) => {
-       // const authProfile = useSelector(state => state.firebase.profile);
-    
+      .then(() => {
         dispatch({ type: "LOGIN_SUCCESS"});
         const role = getState().firebase.profile.role;
-        dispatch({ type: "CHECK_ROLE" , role});
-        
+        dispatch({ type: "CHECK_ROLE" , role : role});
       })
       .catch((err) => {
         dispatch({ type: "LOGIN_ERR", err });
@@ -99,31 +92,18 @@ export const signUpCompany = (newUser) => {
   };
 };
 
-export const signUpAdmin = (newUser) => {
+export const isLoggedIn = () => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
-    const firestore = getFirestore();
-
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(newUser.email, newUser.password)
-      .then((res) => {
-        return firestore.collection("users").doc(res.user.uid).set({
-          name: newUser.name,
-          phone: newUser.phone,
-          address: newUser.address,
-          city: newUser.city,
-          role: "admin",
-        });
-      })
-      .then(() => {
-        dispatch({ type: "SIGNUP_SUCCESS" });
-      })
-      .catch((err) => {
-        dispatch({ type: "SIGNUP_ERR", err });
-      });
-  };
-};
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+      if(user) {
+      //  localStorage.setItem('user', JSON.stringify(user))
+        dispatch({ type : 'LOGGED_IN' })
+      }
+    })
+  }
+}
 
 
 

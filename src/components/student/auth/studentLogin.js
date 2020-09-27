@@ -23,7 +23,18 @@ class StudentLogin extends Component {
     });
   };
 
+//   componentDidMount() {
+//     if(this.props.auth) {
+//       return <Redirect to="/sboard" /> 
+//     }
+// else {
+//   return null;
+// }
+//   }
+ 
   render() {
+    console.log('hee',this.props.role);
+   let he = "stu";
     return (
       <div>
         <Login
@@ -36,7 +47,8 @@ class StudentLogin extends Component {
           change={this.handleChange}
           sulink="/s-signup"
         />
-        {this.props.auth ? <Redirect to="/sboard" /> : null}
+        {this.props.auth && he == "stu"? <Redirect to="/cprofile" /> : null}
+        {/* {this.props.auth && this.props.role == "company"? <Redirect to="/cboard" /> : null} */}
       </div>
     );
   }
@@ -45,7 +57,8 @@ class StudentLogin extends Component {
 const mapStateToProps = (state) => {
   return {
     err: state.auth.authError,
-    auth: state.auth.auth
+    auth: state.auth.auth,
+    role: state.auth.authRole
   };
 };
 

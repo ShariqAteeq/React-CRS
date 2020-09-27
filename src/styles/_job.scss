@@ -1,0 +1,54 @@
+.job {
+
+    width: 70%;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #236CA4;
+    border-radius: 3px;
+    box-shadow: 0 .5rem 1rem rgba($color: #0000, $alpha: 0.65);
+    text-align: center;
+
+    &-title {
+        color: #fff;
+        text-align: center;
+        font-size:2.5rem;
+        text-transform: uppercase;
+    }
+
+    &-field {
+        display: block;
+        width: 100%;
+        border: none;
+        border-radius: 3px;
+        // border: 1px solid  #ccc !important;
+        box-shadow: 0 6px 10px rgba($color: #0000, $alpha: 0.45) !important;
+        //border-bottom: 2px solid #236CA4 !important;
+        padding: 1rem;
+        margin-top: 1rem;
+        
+        &:focus {
+         outline: none;
+        }
+
+        &::placeholder {
+           font-size: 1.2rem;
+           color: #777;
+       }
+    }
+
+    &-btn {
+        border-radius: 3px;
+        background-color: #fff;
+        color: #236CA4;
+        border: none;
+        font-size: 1.2rem;
+        padding: .6rem 2.2rem;
+        text-transform: capitalize;
+        font-weight: 500;
+        box-shadow: 0 6px 10px rgba($color: #0000, $alpha: 0.45) !important;
+        margin-top: 1.5rem;
+    }
+}
+.modal {
+    background-color: aqua !important;
+}

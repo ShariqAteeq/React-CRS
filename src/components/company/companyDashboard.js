@@ -6,7 +6,7 @@ import Navbar from "../layout/navbar";
 
 class StudentDashboard extends Component {
   render() {
-    if (this.props.auth == false) return <Redirect to="/" />;
+    // if (this.props.auth == false) return <Redirect to="/" />;
 
     return (
       <div>

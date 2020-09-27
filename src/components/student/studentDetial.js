@@ -36,7 +36,7 @@ function StudentDetail() {
 
     let myUser = users.find(user => user.id == id);
 
-    if(auth == false) return <Redirect to = '/' />;
+    // if(auth == false) return <Redirect to = '/' />;
 
     return (
         <div className = "stds">

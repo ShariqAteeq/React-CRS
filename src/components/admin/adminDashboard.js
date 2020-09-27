@@ -29,7 +29,7 @@ function AdminDashboard() {
     const companies = useSelector(state => state.cam.companies);
     let auth = useSelector(state => state.auth.auth);
 
-    if(auth === false) return <Redirect to = '/' />
+    // if(auth === false) return <Redirect to = '/' />
     const navbar = auth ? <Navbar />: null;
 
     return (

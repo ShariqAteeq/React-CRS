@@ -25,7 +25,7 @@ const authReducer = (state = initialState, action ) => {
         case 'CHECK_ROLE':
             return {
                 ...state,
-                authRole: 'student'
+                authRole: action.role
             };
         case 'LOGIN_ERR':
             console.log('login error');
@@ -65,6 +65,12 @@ const authReducer = (state = initialState, action ) => {
             return {
                 ...state,
                 authError: action.err.message
+            }
+        case "LOGGED_IN":
+            console.log('logged in');
+            return {
+                ...state,
+                auth:true
             }
         default:
             return state;

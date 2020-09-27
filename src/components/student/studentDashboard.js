@@ -13,7 +13,7 @@ class StudentDashboard extends Component {
 
     render() {
         console.log('rl',this.props.role);
-       if(this.props.auth == false) return <Redirect to = '/' />;
+    //    if(this.props.auth == false) return <Redirect to = '/' />;
        
         return(
            

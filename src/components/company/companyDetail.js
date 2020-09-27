@@ -11,7 +11,7 @@ function CompanyDetail() {
     let { id } = useParams();
 
     let company = comp.find(c => c.id == id);
-    if(auth == false) return <Redirect to = '/' />;
+    // if(auth == false) return <Redirect to = '/' />;
     const navbar = auth ? <Navbar /> : null;
 
     return (

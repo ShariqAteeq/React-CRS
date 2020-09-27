@@ -9,17 +9,17 @@ function Front() {
     let auth = useSelector(state => state.auth.auth);
     let authbtns;
     
-    if(auth==false) {
-            authbtns = (
-                <div className = "front-btns">
-                <Link to = '/slogin' className = "front-login">Login as Student</Link>
-                <Link to = '/clogin' className = "front-login">Login as Company</Link>
-                <Link to = '/alogin' className = "front-login">Login as Admin</Link>
-                </div>
-            )
-    } else {
-       authbtns = ( <Link to = '/' className = "front-login">About Company</Link> )
-    }
+    // if(auth==false) {
+    //         authbtns = (
+    //             <div className = "front-btns">
+    //             <Link to = '/slogin' className = "front-login">Login as Student</Link>
+    //             <Link to = '/clogin' className = "front-login">Login as Company</Link>
+    //             <Link to = '/alogin' className = "front-login">Login as Admin</Link>
+    //             </div>
+    //         )
+    // } else {
+    //    authbtns = ( <Link to = '/' className = "front-login">About Company</Link> )
+    // }
 
     return (
         <div className = "front">
@@ -27,8 +27,8 @@ function Front() {
                 <h1 className = "front-logo">Campus Recruitement System</h1>
                 <ul className = "front-list">
                     <li><Link to = '/' className = "front-link">About</Link></li>
-                    <li><Link to = '/' className = "front-link">Contact</Link></li>
-                    <li><Link to = '/' className = "front-link">FAQ's</Link></li>
+                    <Link to = '/slogin' className = "front-linkbtn">Signin</Link>
+                    <Link to = '/s-signup' className = "front-linkbtn">SignUp</Link>
                 </ul>
             </nav>
             <div className = "front-ban">
@@ -41,10 +41,7 @@ function Front() {
                      when an unknown printer took a galley of type and scrambled it to make a type 
                      specimen book. It has survived not only five centuries
                     </p>
-                    <div className = "front-btns">
-                    {authbtns}
-                    </div>
-                    
+                   <Link to = '/' className = "front-login">About Company</Link>
                 </div>
                 <div className = "front-right">
                     <img src = {front} className = "front-img" />

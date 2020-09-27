@@ -1,19 +1,26 @@
 import React from "react";
-import StudentRouter from "react";
-import CompanyRouter from "react";
-import AdminRouter from "react";
+import StudentRouter from "./Modules/Student";
+import CompanyRouter from "./Modules/Company";
+import AdminRouter from "./Modules/Admin";
 
-function ModuleRoutes(role) {
+import {useSelector} from 'react-redux';
+
+const ModuleRoutes = ({role}) => {
+
+  const auth = useSelector(state=> state.auth.authRole);
+  console.log(auth);
+
   switch (role) {
-    case "STUDENT":
-      <StudentRouter />;
-      break;
-    case "COMPANY":
-      <CompanyRouter />;
-      break;
-    case "ADMIN":
-      <AdminRouter />;
-      break;
+    case "student":
+      return <StudentRouter />
+     // break;
+    case "company":
+     return <CompanyRouter />
+     // break;
+    case "admin":
+      return <AdminRouter />
+    default:
+      return null;
   }
 }
 
