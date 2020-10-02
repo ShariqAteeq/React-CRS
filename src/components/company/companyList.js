@@ -1,30 +1,45 @@
-import React from "react";
+import React, {Component} from "react";
 import ComapnySummary from "./comapnySummary";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+import logo from '../../img/apple.png';
 
-function CompanyList() {
-  let comp = useSelector((state) => state.cam.companies);
-  let auth = useSelector((state) => state.auth.auth);
+class CompanyList extends Component {
+  render() {
+    const { fbusers } = this.props;
 
-  let companies = comp.map((c) => {
+    let myUsers = fbusers.map((user) => {
+      if (user.role === "company") {
+        return (
+          <ComapnySummary
+          logo={logo}
+          title={user.name}
+          location={user.city}
+          id={user.id}
+          key={user.id}
+        />
+        );
+      }
+    });
+  
     return (
-      <ComapnySummary
-        logo={c.logo}
-        title={c.name}
-        jobTitle={c.jt}
-        vacancies={c.vac}
-        id={c.id}
-        key={c.id}
-      />
+      <div>
+        <h1 className="company-list-main">List of Companies</h1>
+        {myUsers}
+      </div>
     );
-  });
-
-  return (
-    <div>
-      <h1 className="company-list-main">List of Companies</h1>
-      {companies}
-    </div>
-  );
+  }
 }
 
-export default CompanyList;
+const mapStateToProps = (state) => {
+  return {
+    users: state.cam.users,
+    fbusers: state.firestore.ordered.users || state.cam.fbusers,
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect(() => [{ collection: "users" }])
+)(CompanyList);

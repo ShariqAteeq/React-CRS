@@ -52,3 +52,28 @@
 .modal {
     background-color: aqua !important;
 }
+.joblist {
+    padding: 2rem 12rem;
+    padding-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    &-card {
+        display: block;
+        padding: 1rem;
+        box-shadow: 0 .2rem 1rem rgba($color: #000000, $alpha: 0.45);
+        border-bottom: 5px solid #236CA4;
+        margin: 0 auto;
+        margin-top: 1.6rem;
+    }
+
+    &-flex {
+        display: flex;
+        justify-content: space-around;
+    }
+    &-text {
+        font-size: 1rem;
+        padding: 0 1rem;
+        text-align: justify;
+    }
+}

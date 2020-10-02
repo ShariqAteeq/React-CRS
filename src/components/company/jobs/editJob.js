@@ -12,15 +12,16 @@ class EditJob extends Component {
         jobname: "",
         noofvac: "",
         salary: "",
+        su : false
       };
     
       onSubmit = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         let id = this.props.match.params.id;
         this.props.UpdateJob(id , this.state);
-        console.log(this.props.jobs);
-        console.log(this.props.fb);
-        //<Redirect to = '/cprofile' />
+        
+        this.setState({su: true});
+
       };
     
       handleChange = (e) => {
@@ -75,6 +76,7 @@ class EditJob extends Component {
           <button onClick={this.onSubmit} className="job-btn">
             Update Job
           </button>
+          {this.state.su ? <Redirect to = '/cprofile' /> : null}
         </div>
       </div>
     );

@@ -5,7 +5,7 @@ import CompanyDashboard from "../../components/company/companyDashboard";
 import StudentDashboard from "../../components/student/studentDashboard";
 import StudentDetail from "../../components/student/studentDetial";
 import CompanyDetail from "../../components/company/companyDetail";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 class AdminRouter extends Component {
   render() {
@@ -29,16 +29,16 @@ class AdminRouter extends Component {
     // }
 
     return (
-        <Switch>
-            <Route exact path="/aboard" component={AdminDashboard} />
+      <Switch>
+        <Route exact path="/aboard" component={AdminDashboard} />
         <Route exact path="/sboard" component={StudentDashboard} />
-          <Route path="/company/:id" component={CompanyDetail} />
-             <Route exact path="/sboard" component={StudentDashboard} />
-          <Route path="/company/:id" component={CompanyDetail} />
+        <Route path="/company/:id" component={CompanyDetail} />
+        <Route exact path="/sboard" component={StudentDashboard} />
+        <Route path="/company/:id" component={CompanyDetail} />
         <Route exact path="/cboard" component={CompanyDashboard} />
         <Route path="/std/:id" component={StudentDetail} />
       </Switch>
-        );
+    );
   }
 }
 const mapStateToProps = (state) => {

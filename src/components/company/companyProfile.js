@@ -23,39 +23,9 @@ class CompanyProfile extends Component {
     location: "",
   };
 
-  showModal = (job) => {
-    this.setState({
-      visible: true,
-      jobname: job.name,
-      noofvac: job.noofvac,
-      salary: job.salary
-    });
-  };
-
-  handleOk = (id) => {
-    this.setState({
-      visible: false,
-    });
-    let job = {
-      jobname: this.state.jobname,
-      noofvac:this.state.noofvac,
-      salary: this.state.salary
-    }
-    this.props.UpdateJob(id, job);
-  };
-
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-
   onSubmit = (e) => {
     e.preventDefault();
     this.props.createJob(this.state);
-    console.log(this.props.jobs);
-    console.log(this.props.fb);
   };
 
   handleChange = (e) => {
@@ -64,17 +34,13 @@ class CompanyProfile extends Component {
     });
   };
 
-  //  update = (id , job) => {
-  //   this.props.UpdateJob(id, job);
-  // };
-
   delete = (e, id) => {
     e.preventDefault();
     this.props.deleteJob(id);
   };
 
   render() {
-    const { jobs } = this.props;
+    const { jobs , profile } = this.props;
 
     let myjob = jobs.map((job, i) => {
       if (this.props.fb.uid == job.authId) {
@@ -114,8 +80,7 @@ class CompanyProfile extends Component {
         <div className="studentDet">
           <div className="studentDet-sidebar">
             <Avatar alt="Remy Sharp" src={av} className="studentList-avatar" />
-            <h4 className="studentDet-name">Harry</h4>
-            <p className="studentDet-tag">Back-End Developer</p>
+            <h4 className="studentDet-name">{profile.name}</h4>
             <div className="studentDet-contact">
               <h4 className="studentDet-contactDet">Contact Information</h4>
               <div className="studentDet-list">
@@ -154,6 +119,7 @@ const mapStateToProps = (state) => {
   return {
     jobs: state.firestore.ordered.jobs || state.job.jobs,
     auth: state.auth.auth,
+    profile: state.firebase.profile,
     fb: state.firebase.auth,
   };
 };
@@ -169,39 +135,3 @@ export default compose(
   connect(mapStateToProps, mapDisptachToProps),
   firestoreConnect(() => [{ collection: "jobs" }])
 )(CompanyProfile);
-
-{/* <Modal
-title="Edit Job"
-visible={this.state.visible}
-onOk={() => this.handleOk(job.id)}
-onCancel={this.handleCancel}
-okText="Update"
-okType="primary"
->
-<div>
-<input
-  type="text"
-  id="jobname"
-  placeholder="Job Title"
-  value={this.state.jobname}
-  onChange={this.handleChange}
-  className="job-field"
-/>
-<input
-  type="text"
-  id="salary"
-  placeholder="Salary"
-  value={this.state.salary}
-  onChange={this.handleChange}
-  className="job-field"
-/>
-<input
-  type="text"
-  id="noofvac"
-  placeholder="Number of Vacancies"
-  value={this.state.noofvac}
-  onChange={this.handleChange}
-  className="job-field"
-/>
-</div>
-</Modal> */}

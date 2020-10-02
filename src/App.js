@@ -22,25 +22,13 @@ import { isLoggedIn } from './actions/authActions';
 import Router from './Routes/Router';
 class App extends Component {
 
-  // const auth = useSelector(state => state.auth.auth);
-
-  // const fb = useSelector(state => state.firebase);
-  
-
-  //  const
-
-  // componentDidMount() {
-  //   this.props.isLoggedIn();
-  //   console.log(this.props.auth);
-  // }
-
   render(){
     return (
       <BrowserRouter>
-        {/* <Router /> */}
+        <Router />
       <div className="App">
       
-    <Switch>
+    {/* <Switch>
       <Route path = '/editJob/:id' component = {EditJob} />
           <Route path = '/cjob' component = {CreateJob} />
         <Route path = '/slogin' component = {StudentLogin} />
@@ -60,7 +48,7 @@ class App extends Component {
           <Route path = '/company/:id' component = {CompanyDetail} />
           <Route path = '/std/:id' component = {StudentDetail} />
           <Route path = '/cprofile' component = {CompanyProfile} />
-        </Switch>
+        </Switch> */}
       </div>
       </BrowserRouter>
       

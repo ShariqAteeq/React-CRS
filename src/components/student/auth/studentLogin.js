@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Login from "../../layout/login";
 import std from "../../../img/student.png";
-import { SignIn , checkAuth } from "../../../actions/authActions";
+import { SignIn} from "../../../actions/authActions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import firebase from 'firebase';
@@ -33,8 +33,6 @@ class StudentLogin extends Component {
 //   }
  
   render() {
-    console.log('hee',this.props.role);
-   let he = "stu";
     return (
       <div>
         <Login
@@ -47,8 +45,9 @@ class StudentLogin extends Component {
           change={this.handleChange}
           sulink="/s-signup"
         />
-        {this.props.auth && he == "stu"? <Redirect to="/cprofile" /> : null}
-        {/* {this.props.auth && this.props.role == "company"? <Redirect to="/cboard" /> : null} */}
+        {this.props.auth && this.props.role == "student"? <Redirect to="/sboard" /> : null}
+        {this.props.auth && this.props.role == "company"? <Redirect to="/cboard" /> : null}
+        {this.props.auth && this.props.role == "admin"? <Redirect to="/aboard" /> : null}
       </div>
     );
   }
@@ -58,14 +57,13 @@ const mapStateToProps = (state) => {
   return {
     err: state.auth.authError,
     auth: state.auth.auth,
-    role: state.auth.authRole
+    role: state.auth.role
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (creds) => dispatch(SignIn(creds)),
-    checkAuth : () => dispatch(checkAuth())
+    signIn: (creds) => dispatch(SignIn(creds))
   };
 };
 

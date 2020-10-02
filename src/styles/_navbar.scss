@@ -1,6 +1,10 @@
 .nav {
     background-color: #236CA4;
 
+    &-links {
+        display: flex;
+    }
+
     &-list {
         list-style: none;
         display: flex;
@@ -14,6 +18,7 @@
         color: #fff;
         cursor: pointer;
         font-weight: 500;
+        padding: 0 1rem;
     }
 
     &-logo {
@@ -22,4 +27,7 @@
         color: #fff;
     }
 
+}
+.logout-links {
+    display: flex;
 }

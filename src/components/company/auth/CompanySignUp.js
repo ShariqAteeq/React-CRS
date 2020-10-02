@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import React , {Component} from 'react';
 import { signUpCompany } from '../../../actions/authActions';
 import { connect } from 'react-redux';
@@ -9,13 +9,14 @@ class CompanySignUp extends Component {
         email : '',
         password: '',
         name: '',
-        jt : '',
-        noOfvac : '',
+        city : '',
+        su: false
     }
 
     onSubmit =(e) => {
         e.preventDefault();
         this.props.signUp(this.state);
+       this.setState({su : true})
     }
     handleChange = (e) => {
         this.setState({
@@ -37,21 +38,9 @@ class CompanySignUp extends Component {
                         </div>
                         <h3 className="signup-heading">Contact Information</h3>
                         <div className="signup-grp">
+                        <input type="text" placeholder="City" id = "city" className="signup-field" onChange = {this.handleChange} value = {this.state.city}/>
                             <input type="number" placeholder="Phone Number" className="signup-field" />
-                            <input type="text" placeholder="City" className="signup-field" />
                             <input type="text" placeholder="Country" className="signup-field" />
-                        </div>
-                        <h3 className="signup-heading">Job Information</h3>
-                        <div className="signup-grp">
-                            <input type="text" placeholder="Job Title" className="signup-field" id = "jt"  onChange = {this.handleChange} value = {this.state.jt} />
-                            <input type="text" placeholder="Number of Vacancies" className="signup-field" id = "noOfvac"  onChange = {this.handleChange} value = {this.state.noOfvac}  />
-                        </div>
-                        <h3 className="signup-heading">Required Skills</h3>
-                        <div className="signup-grp">
-                            <input type="text" placeholder="Skill 1" className="signup-field" />
-                            <input type="text" placeholder="Skill 2" className="signup-field" />
-                            <input type="text" placeholder="Skill 3" className="signup-field" />
-                            <input type="text" placeholder="Skill 4" className="signup-field" />
                         </div>
                         <h3 className="signup-heading">Description</h3>
                         <div className="signup-grp">
@@ -59,7 +48,8 @@ class CompanySignUp extends Component {
                         </div>
                         <div className="signup-grp">
                         </div>
-                        <Link to='/' className="login-btn" onClick = {this.onSubmit}>Register Company</Link> 
+                        <Link className="login-btn" onClick = {this.onSubmit}>Register Company</Link> 
+                        {this.state.su ? <Redirect to = '/clogin' /> : null}
                     </form>
                 </div>
             </div>

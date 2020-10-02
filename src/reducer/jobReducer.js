@@ -22,6 +22,12 @@ const jobReducer = (state = initialState, action) => {
         case "UPDATE_JOB_ERR":
           console.log(action.err);
           return state;
+        case "APP_JOB":
+          console.log('app job added');
+          return state;
+        case "APP_JOB_ERR":
+          console.log(action.err);
+          return state;
     default:
       return state;
   }

@@ -67,7 +67,17 @@
     padding: 4rem 8rem;
 
     &-logo {
-        height: 6rem;
+        height: 4.5rem;
+    }
+
+    &-jobs {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &-jbtn {
+       display: flex;
+       justify-content: center;
     }
 
     &-head {

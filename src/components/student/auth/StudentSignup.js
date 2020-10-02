@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {signUpStudent} from '../../../actions/authActions';
@@ -9,14 +9,15 @@ class Studentsignup extends Component {
         email : '',
         password: '',
         name: '',
-        phone : '',
-        address : '',
-        city: ''
+        dev : '',
+        quali : '',
+        city: '',
     }
 
     onSubmit =(e) => {
         e.preventDefault();
         this.props.signUp(this.state);
+        return <Redirect to =  '/slogin' />
     }
 
     
@@ -25,67 +26,50 @@ class Studentsignup extends Component {
             [e.target.id] : e.target.value
         });
     }
+    
 
     render() {
-
+        console.log(this.state.quali , this.state.skills);
         return (
+            
             <div className="signup">
                 <div className="signup-bg">
                     <p className="signup-title">Create Student Account!</p>
-                    <form className="signup-form">
+                    <form className="signup-form" onSubmit = {this.onSubmit}>
                         <h3 className="signup-heading">Account Information</h3>
                         <div className="signup-grp">
-                            <input type="email"  id = "email" placeholder="Email" className="signup-field" onChange = {this.handleChange} value = {this.state.email}/>
-                            <input type="password" id = "password" placeholder="Password" className="signup-field" onChange = {this.handleChange} value = {this.state.password}/>
-                            <input type="text" id = "name" placeholder="Name" className="signup-field" onChange = {this.handleChange} value = {this.state.name}/>
+                            <input type="email"  id = "email" placeholder="Email" className="signup-field" onChange = {this.handleChange} value = {this.state.email} required/>
+                            <input type="password" id = "password" placeholder="Password" className="signup-field" onChange = {this.handleChange} value = {this.state.password} required/>
+                            <input type="text" id = "name" placeholder="Name" className="signup-field" onChange = {this.handleChange} value = {this.state.name} required/>
                         </div>
                         <h3 className="signup-heading">Contact Information</h3>
                         <div className="signup-grp">
-                            <input type="text" id = "phone" placeholder="Phone Number" className="signup-field" onChange = {this.handleChange} value = {this.state.phone}/>
-                            <input type="text" id = "address" placeholder="Address" className="signup-field" onChange = {this.handleChange} value = {this.state.address}/>
-                            <input type="text" id = "city" placeholder="City" className="signup-field" onChange = {this.handleChange} value = {this.state.city}/>
-                        </div>
-                        <h3 className="signup-heading">Academic Qualification</h3>
-                        <div className="signup-grp">
-                            <input type="text" placeholder="Institute" className="signup-field" />
-                            <input type="text" placeholder="Department" className="signup-field" />
-                            <input type="text" placeholder="Degree" className="signup-field" />
-                            <input type="text" placeholder="Grade" className="signup-field" />
-                        </div>
-                        <div className="signup-grp">
-                            <input type="text" placeholder="Institute" className="signup-field" />
-                            <input type="text" placeholder="Department" className="signup-field" />
-                            <input type="text" placeholder="Degree" className="signup-field" />
-                            <input type="text" placeholder="Grade" className="signup-field" />
-                        </div>
-                        <div className="signup-grp">
-                            <input type="text" placeholder="Institute" className="signup-field" />
-                            <input type="text" placeholder="Department" className="signup-field" />
-                            <input type="text" placeholder="Degree" className="signup-field" />
-                            <input type="text" placeholder="Grade" className="signup-field" />
+                            <input type="text" id = "dev" placeholder="Developer" className="signup-field" onChange = {this.handleChange} value = {this.state.dev} required/>
+                            <input type="text" id = "quali" placeholder="Qualification" className="signup-field" onChange = {this.handleChange} value = {this.state.quali} required/>
+                            <input type="text" id = "city" placeholder="City" className="signup-field" onChange = {this.handleChange} value = {this.state.city} required/>
                         </div>
                         <h3 className="signup-heading">Skills</h3>
                         <div className="signup-grp">
                             <div className="signup-grp mr-small">
-                                <input type="text" placeholder="Skill Name" className="signup-field" />
-                                <input type="Number" placeholder="Skill Mastery Level" className="signup-field" />
+                                <input type="text" placeholder="Skill Name" id = "sk1t" className="signup-field" />
+                                <input type="Number" placeholder="Skill Mastery Level" id = "sk1p" className="signup-field" />
                             </div>
                             <div className="signup-grp">
-                                <input type="text" placeholder="Skill Name" className="signup-field" />
-                                <input type="Number" placeholder="Skill Mastery Level" className="signup-field" />
+                                <input type="text" placeholder="Skill Name" className="signup-field" id = "sk2t"/>
+                                <input type="Number" placeholder="Skill Mastery Level" className="signup-field" id = "sk2p" />
                             </div>
                         </div>
                         <div className="signup-grp">
                             <div className="signup-grp mr-small">
-                                <input type="text" placeholder="Skill Name" className="signup-field" />
-                                <input type="Number" placeholder="Skill Mastery Level" className="signup-field" />
+                                <input type="text" placeholder="Skill Name" className="signup-field" id = "sk3t" />
+                                <input type="Number" placeholder="Skill Mastery Level" className="signup-field" id = "sk3p" />
                             </div>
                             <div className="signup-grp">
-                                <input type="text" placeholder="Skill Name" className="signup-field" />
-                                <input type="Number" placeholder="Skill Mastery Level" className="signup-field" />
+                                <input type="text" placeholder="Skill Name" className="signup-field" id = "sk4t" />
+                                <input type="Number" placeholder="Skill Mastery Level" className="signup-field" id = "sk4p"/>
                             </div>
                         </div>
-                        <button className="login-btn" onClick = {this.onSubmit}>Register Student</button>
+                        <button className="login-btn" type = "submit">Register Student</button>
                     </form>
                 </div>
             </div>

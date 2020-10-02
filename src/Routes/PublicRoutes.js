@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch , Redirect } from "react-router-dom";
 import StudentLogin from "../components/student/auth/studentLogin";
 import StudentSignUp from "../components/student/auth/StudentSignup";
 import CompanySignUp from "../components/company/auth/CompanySignUp";

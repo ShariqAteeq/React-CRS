@@ -1,16 +1,25 @@
-
 export const SignIn = (cred) => {
-  
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
-    
+
     firebase
       .auth()
       .signInWithEmailAndPassword(cred.email, cred.password)
-      .then(() => {
-        dispatch({ type: "LOGIN_SUCCESS"});
+      .then((user) => {
         const role = getState().firebase.profile.role;
-        dispatch({ type: "CHECK_ROLE" , role : role});
+        if (role === "student") {
+          localStorage.setItem("role", "student");
+          dispatch({ type: "STUDENT_LOGIN_SUCCESS" });
+        } else if (role === "company") {
+          // localStorage.removeItem('role');
+          localStorage.setItem("role", "company");
+          dispatch({ type: "COMPANY_LOGIN_SUCCESS" });
+        } else if (role === "admin") {
+          localStorage.setItem("role", "admin");
+          dispatch({ type: "ADMIN_LOGIN_SUCCESS" });
+        } else {
+          console.log("UnAuthorized Invalid Login");
+        }
       })
       .catch((err) => {
         dispatch({ type: "LOGIN_ERR", err });
@@ -18,24 +27,17 @@ export const SignIn = (cred) => {
   };
 };
 
-export const checkAuth = () => {
-  return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
-      firebase.auth().onAuthStateChanged()
-      .then(() => {
-        dispatch({ type : 'checkAuth' })
-      })
-  }
-}
-
 export const signOut = () => {
   return (dispatch, getState, { getFirebase }) => {
+    localStorage.removeItem("role");
     const firebase = getFirebase();
 
     firebase
       .auth()
       .signOut()
       .then(() => {
+        //localStorage.removeItem('role');
+        // localStorage.clear();
         dispatch({ type: "LOGOUT_SUCCESS" });
       });
   };
@@ -52,8 +54,9 @@ export const signUpStudent = (newUser) => {
       .then((res) => {
         return firestore.collection("users").doc(res.user.uid).set({
           name: newUser.name,
-          phone: newUser.phone,
-          address: newUser.address,
+          email: newUser.email,
+          dev: newUser.dev,
+          quali: newUser.quali,
           city: newUser.city,
           role: "student",
         });
@@ -78,8 +81,8 @@ export const signUpCompany = (newUser) => {
       .then((res) => {
         return firestore.collection("users").doc(res.user.uid).set({
           name: newUser.name,
-          jt: newUser.jt,
-          noOfvac: newUser.noOfvac,
+          email: newUser.email,
+          city: newUser.city,
           role: "company",
         });
       })
@@ -92,27 +95,46 @@ export const signUpCompany = (newUser) => {
   };
 };
 
-export const isLoggedIn = () => {
+export const deleteUser = (id) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("users")
+      .doc(id)
+      .delete()
+      .then(function () {
+        dispatch({ type: "DEL_USER" });
+      })
+      .catch(function (err) {
+        dispatch({ type: "DEL_USER_ERR", err });
+      });
+  };
+};
+
+export const isLoggedIn = (role) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
-    firebase.auth().onAuthStateChanged(user => {
+    // const role = getState().firebase.profile;
+    console.log("logged in action", role);
+    firebase.auth().onAuthStateChanged((user) => {
       console.log(user);
-      if(user) {
-      //  localStorage.setItem('user', JSON.stringify(user))
-        dispatch({ type : 'LOGGED_IN' })
+      if (user) {
+        dispatch({ type: "LOGGED_IN", role });
       }
-    })
-  }
-}
+      //   user ?
+      //   localStorage.setItem('user', JSON.stringify(user))
+      // : localStorage.removeItem('user')
+      //   dispatch({ type : 'LOGGED_IN'  })
+    });
+  };
+};
 
-
-
-  // let uid = user.uid;
-        // firebase.console.log(e);
-        // if ("user") {
-        //   dispatch({ type: "USER_LOGIN_SUCCESS" });
-        // } else if ("company") {
-        //   dispatch({ type: "TEACHER_LOGIN_SUCCESS" });
-        // } else if ("admin") {
-        //   dispatch({ type: "ADMIN_LOGIN_SUCCESS" });
-        // }
+// let uid = user.uid;
+// firebase.console.log(e);
+// if ("user") {
+//   dispatch({ type: "USER_LOGIN_SUCCESS" });
+// } else if ("company") {
+//   dispatch({ type: "TEACHER_LOGIN_SUCCESS" });
+// } else if ("admin") {
+//   dispatch({ type: "ADMIN_LOGIN_SUCCESS" });
+// }

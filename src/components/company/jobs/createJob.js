@@ -12,14 +12,15 @@ class CreateJob extends Component {
     jobname: "",
     noofvac: "",
     salary: "",
-    location: ""
+    location: "",
+    su: false
   };
 
   onSubmit = (e) => {
     e.preventDefault();
     this.props.createJob(this.state);
-    console.log(this.props.jobs);
-    console.log(this.props.fb);
+
+    this.setState({su: true});
   };
 
   handleChange = (e) => {
@@ -71,6 +72,7 @@ class CreateJob extends Component {
           <button onClick={this.onSubmit} className="job-btn">
             Create Job
           </button>
+          {this.state.su ? <Redirect to = '/cprofile' /> : null}
         </div>
       </div>
     );
